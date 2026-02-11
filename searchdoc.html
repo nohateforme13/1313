@@ -48,6 +48,15 @@
                 window.location.href = "load1.html";
             }
         </script>
+        <script>document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+        event.preventDefault(); // Запрещает мультитач (зум)
+    }
+}, { passive: false });
+
+document.addEventListener('gesturestart', function (event) {
+    event.preventDefault(); // Специальный костыль для Safari
+});</script>
 </body>
 
 </html>

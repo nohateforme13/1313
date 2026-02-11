@@ -34,6 +34,11 @@ body {
     padding: 0;
 }
 
+html, body {
+    touch-action: pan-x pan-y; /* Разрешает только обычный скролл, запрещает зум жестами */
+    -webkit-text-size-adjust: 100%; /* Запрещает автоувеличение текста при повороте экрана */
+}
+
 /* Этот класс полностью выключает скролл только там, где он добавлен */
 body.no-scroll {
     overflow: hidden;
@@ -730,7 +735,7 @@ input[type="radio"] {
 
 .udos-title h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .close-udos-img {

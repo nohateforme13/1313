@@ -66,15 +66,14 @@
                     <div class="req-item">
                         <span>ФИО</span>
                         <div class="input-row">
-                            <input type="text" id="req-fio" class="req-input" placeholder="Введите ФИО"
-                                oninput="saveReq(this)">
+                            <input type="text" id="req-iin" class="req-input" value="" oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>ИИН</span>
                         <div class="input-row">
-                            <input type="text" id="req-iin" class="req-input" placeholder="Введите ИИН"
+                            <input type="text" id="req-iin" class="req-input" value=""
                                 oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
@@ -82,7 +81,7 @@
                     <div class="req-item">
                         <span>Дата рождения</span>
                         <div class="input-row">
-                            <input type="text" id="req-birth" class="req-input" placeholder="Введите дату рождения"
+                            <input type="text" id="req-birth" class="req-input" value=""
                                 oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
@@ -90,7 +89,7 @@
                     <div class="req-item">
                         <span>Номер документа</span>
                         <div class="input-row">
-                            <input type="text" id="req-num" class="req-input" placeholder="000000000"
+                            <input type="text" id="req-num" class="req-input" value=""
                                 oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
@@ -98,7 +97,7 @@
                     <div class="req-item">
                         <span>Дата выдачи</span>
                         <div class="input-row">
-                            <input type="text" id="req-date" class="req-input" placeholder="00.00.0000"
+                            <input type="text" id="req-date" class="req-input" value=""
                                 oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
@@ -106,7 +105,7 @@
                     <div class="req-item">
                         <span>Срок действия</span>
                         <div class="input-row">
-                            <input type="text" id="req-expiry" class="req-input" placeholder="00.00.0000"
+                            <input type="text" id="req-expiry" class="req-input" value=""
                                 oninput="saveReq(this)">
                             <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
                         </div>
@@ -253,31 +252,31 @@
                 scale = matrix.a;
             }
         });
-       function openQrModal() {
-    const loader = document.getElementById('loadingOverlay');
-    const bottomSheet = document.getElementById('qrModal'); // Используем ID qrModal, так как он у тебя в HTML
+        function openQrModal() {
+            const loader = document.getElementById('loadingOverlay');
+            const bottomSheet = document.getElementById('qrModal'); // Используем ID qrModal, так как он у тебя в HTML
 
-    if (!loader || !bottomSheet) return;
+            if (!loader || !bottomSheet) return;
 
-    // 1. Показываем загрузку и блокируем скролл
-    loader.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
+            // 1. Показываем загрузку и блокируем скролл
+            loader.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
 
-    // 2. Ждем 1.5 секунды
-    setTimeout(() => {
-        // 3. Скрываем загрузку
-        loader.style.display = 'none';
-        
-        // 4. Плавно открываем QR-модалку
-        bottomSheet.classList.add('active');
-    }, 1500);
-}
+            // 2. Ждем 1.5 секунды
+            setTimeout(() => {
+                // 3. Скрываем загрузку
+                loader.style.display = 'none';
 
-// Функцию закрытия оставляем без изменений
-function closeQrModal() {
-    document.getElementById('qrModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-}
+                // 4. Плавно открываем QR-модалку
+                bottomSheet.classList.add('active');
+            }, 1500);
+        }
+
+        // Функцию закрытия оставляем без изменений
+        function closeQrModal() {
+            document.getElementById('qrModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
 
         function closeQrModal(e) {
             document.getElementById('qrModal').classList.remove('active');
@@ -379,22 +378,31 @@ function closeQrModal() {
             this.classList.toggle('zoomed');
         });
         function showDocumentWithLoading() {
-    const loader = document.getElementById('loadingOverlay');
-    const bottomSheet = document.getElementById('bottomSheetOverlay');
+            const loader = document.getElementById('loadingOverlay');
+            const bottomSheet = document.getElementById('bottomSheetOverlay');
 
-    // 1. Показываем загрузку
-    loader.style.display = 'flex';
+            // 1. Показываем загрузку
+            loader.style.display = 'flex';
 
-    // 2. Ждем 1.5 секунды (имитация загрузки из базы данных)
-    setTimeout(() => {
-        // 3. Скрываем загрузку
-        loader.style.display = 'none';
-        
-        // 4. Открываем модальное окно с QR
-        bottomSheet.classList.add('active');
-    }, 1500);
-}
+            // 2. Ждем 1.5 секунды (имитация загрузки из базы данных)
+            setTimeout(() => {
+                // 3. Скрываем загрузку
+                loader.style.display = 'none';
+
+                // 4. Открываем модальное окно с QR
+                bottomSheet.classList.add('active');
+            }, 1500);
+        }
     </script>
+    <script>document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault(); // Запрещает мультитач (зум)
+            }
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', function (event) {
+            event.preventDefault(); // Специальный костыль для Safari
+        });</script>
 
     <div id="qrModal" class="bottom-sheet-overlay" onclick="closeQrModal(event)">
         <div class="bottom-sheet" onclick="event.stopPropagation()">
@@ -418,8 +426,8 @@ function closeQrModal() {
         </div>
     </div>
     <div id="loadingOverlay" class="loading-overlay">
-    <div class="loader"></div>
-</div>
+        <div class="loader"></div>
+    </div>
 </body>
 
 </html>

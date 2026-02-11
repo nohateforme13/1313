@@ -22,7 +22,7 @@
         <div class="search-container">
             <div class="search-content">
                 <img src="./image/search.png" alt="" class="search-icon">
-                <a href="search.html"><p class="search-input">Поиск по Kaspi.kz</p>
+                <a href="search.html"><p class="search-input">Поиск по Kaspi.kz</p></a>
             </div>
         </div>
     </div>
@@ -156,7 +156,15 @@
             <button class="footer-btn"><img src="./image/footer4.png" alt=""></button>
         </div>
     </div>
-    <script></script>
+    <script>document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+        event.preventDefault(); // Запрещает мультитач (зум)
+    }
+}, { passive: false });
+
+document.addEventListener('gesturestart', function (event) {
+    event.preventDefault(); // Специальный костыль для Safari
+});</script>
 </body>
 
 </html>
