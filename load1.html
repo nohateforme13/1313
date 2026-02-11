@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Loading Step 1</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
+  <meta name="application-name" content="Kaspi.kz">
+
+  <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<!-- ⚡️ ДОБАВЛЕН КЛАСС no-scroll и white-screen -->
+
+<body class="no-scroll white-screen">
+  <script>
+    // ⚡️ ДОБАВЛЕНО: переход на следующий экран через 1 секунду
+    setTimeout(() => {
+      window.location.href = "load2.html";
+    }, 1000);
+  </script>
+</body>
+
+</html>

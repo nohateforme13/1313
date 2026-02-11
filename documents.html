@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Documents</title>
+    <link rel="stylesheet" href="./style.css">
+    <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
+    <meta name="application-name" content="Kaspi.kz">
+
+    <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body>
+    <div class="documents-header">
+        <div class="documents-btn">
+            <button onclick="window.location.href='searchdoc.html'" class="close-btn"><img src="./image/back2.png"
+                    alt="" class="close-img"></button>
+        </div>
+        <div class="documents-title">
+            <h3>Цифровые документы</h3>
+        </div>
+    </div>
+    <div class="documents">
+        <div class="documents-text">
+            <p>Мои документы</p>
+        </div>
+        <div class="documents-container">
+            <div class="document1" onclick="goToPage('udos.html')">
+                <div class="doc-img">
+                    <img src="./image/doc1.png" alt="">
+                </div>
+                <div class="doc-text">
+                    <p>Удостоверение личности</p>
+                </div>
+                <img src="./image/docarrow.png" alt="" class="doc-arrow">
+            </div>
+            <div class="document2">
+                <div class="doc-img">
+                    <img src="./image/doc2.png" alt="">
+                </div>
+                <div class="doc-text">
+                    <p>Свидетельство о регистрации транспортного средства</p>
+                </div>
+                <img src="./image/docarrow.png" alt="" class="doc-arrow">
+            </div>
+            <div class="document3">
+                <div class="doc-img">
+                    <img src="./image/doc3.png" alt="">
+                </div>
+                <div class="doc-text">
+                    <p>Паспорт гражданина РК</p>
+                </div>
+                <img src="./image/docarrow.png" alt="" class="doc-arrow">
+            </div>
+            <div class="document4">
+                <div class="doc-img">
+                    <img src="./image/doc4.png" alt="">
+                </div>
+                <div class="doc-text2">
+                    <p>Справки</p>
+                    <p class="doc-text-mini">Социальные, по недвижимости и медицинские</p>
+                </div>
+                <img src="./image/docarrow.png" alt="" class="doc-arrow">
+            </div>
+            <div class="backdoc">
+                <!-- пустышка -->
+            </div>
+            <div class="doc-btn">
+                <p class="doc-btn-text">Обновить список документов</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goToPage(url) {
+            // добавляем анимацию выезда вправо
+            document.body.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+            document.body.style.transform = "translateX(-100%)";
+            document.body.style.opacity = "0";
+
+            // ждём пока анимация закончится, и переходим
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
+    <meta name="application-name" content="Kaspi.kz">
+
+    <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body>
+    <div class="search-page">
+        <div class="search-header">
+            <div class="search-btn">
+                <button onclick="window.location.href='search.html'" class="close-btn"><img src="./image/back.png"
+                        alt="" class="close-img"></button>
+            </div>
+            <div class="search-inputhead">
+                <input type="text" value="Цифровые документы" placeholder="Поиск по Kaspi.kz"
+                    class="search-inputheader">
+                <div class="closesearch">
+                    <a href="search.html"><img src="./image/closesearch.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="search-select">
+            <img src="./image/searchselect.png" alt="">
+        </div>
+        <div class="search-doc" onclick="goToLoader()">
+            <img class="search-img" src="./image/searchdocument.png" alt="">
+            <div class="search-doc-title-container">
+                <p class="search-doc-title">Цифровые документы</p>
+            </div>
+            <div class="search-arrow"><img src="./image/search-arrow.png" alt=""></div>
+        </div>
+        <script>
+            function goToLoader() {
+                // переход на первую страницу загрузки
+                window.location.href = "load1.html";
+            }
+        </script>
+</body>
+
+</html>

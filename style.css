@@ -1,0 +1,1158 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    /* Увеличиваем отступ, чтобы ad-container не залезал под поиск */
+    padding-top: calc(54px + env(safe-area-inset-top)); 
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    overscroll-behavior: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    overflow-x: hidden;
+}
+
+
+
+html,
+body {
+    overscroll-behavior: none;
+    /* предотвращает bounce-эффект на iOS */
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    all: unset;
+}
+
+input {
+    all: unset;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header {
+    background-color: white;
+    width: 100%;
+    /* Вместо фиксированной высоты 54px делаем адаптивную */
+    padding-top: env(safe-area-inset-top); 
+    min-height: calc(54px + env(safe-area-inset-top));
+    box-shadow: 0 0.4px 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.search-container {
+    display: flex;
+    background-color: #f2f2f2;
+    width: 351px;
+    height: 42px;
+    margin: 6px 16px 6px 16px;
+    border-radius: 8px;
+}
+
+.search-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+
+}
+
+.search-content {
+    margin: 13px 16px 13px 16px;
+    width: 329px;
+    height: 16px;
+    align-items: middle;
+    justify-content: middle;
+}
+
+.search-input {
+    all: unset;
+    caret-color: #B12C1F;
+}
+
+.ad-container {
+    display: flex;
+    /* Это значение = высота хедера (54px) + отступы поиска (12px) + челка iPhone */
+    margin-top: calc(66px + env(safe-area-inset-top)) !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    position: relative; 
+    z-index: 1;
+}
+
+.ad-image-first {
+    width: 160px;
+    height: 100px;
+    margin-left: 16px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.ad-image {
+    width: 160px;
+    height: 100px;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.menu-container {
+    background-color: white;
+    padding: 16px;
+    box-shadow: 0 0.1px 2px rgba(0, 0, 0, 0.3);
+    /* Горизонталь, вертикаль, размытие, цвет */
+    text-align: center;
+}
+
+.menu-container img {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 4px;
+}
+
+.menu-container p {
+    font-size: 14px;
+}
+
+.menu-btn {
+    width: 70px;
+    height: 56px;
+    margin-right: 27px;
+    align-items: center;
+    justify-content: center;
+}
+
+.last-btn {
+    width: 80px;
+    height: 56px;
+}
+
+
+.first-line {
+    width: 361px;
+    height: 56px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: auto;
+}
+
+.second-line {
+    width: 361px;
+    height: 56px;
+    display: flex;
+    gap: auto;
+}
+
+.service-container {
+    background-color: white;
+    padding: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+    box-shadow: 0 0.1px 2px rgba(0, 0, 0, 0.3);
+    /* Горизонталь, вертикаль, размытие, цвет */
+}
+
+.service-btn,
+.lastservice-btn {
+    display: flex;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    background-color: white;
+    /* или другой фон */
+    border-radius: 8px;
+}
+
+.service-btn {
+    margin-right: 20px;
+    width: 236px;
+    height: 40px;
+}
+
+
+.service-container img {
+    width: 52px;
+    height: 40px;
+    margin-right: 12px;
+}
+
+.service-container h5 {
+    font-size: 17px;
+    font-weight: normal;
+
+}
+
+.service-container p {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #A8A8A8;
+}
+
+.first-service {
+    display: flex;
+    width: 748px;
+    height: 40px;
+
+}
+
+.second-service {
+    display: flex;
+    margin-top: 20px;
+    width: 748px;
+    height: 40px;
+}
+
+.service-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstservice-text {
+    margin-top: 10px;
+}
+
+.select-container {
+    display: flex;
+    padding: 16px;
+    padding-top: 12px;
+    background-color: white;
+    width: 100%;
+    height: 56px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    flex-wrap: nowrap;
+}
+
+.select-container img {
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+}
+
+.select-image2 {
+    width: 15px;
+    height: 25px;
+}
+
+.select {
+    border: 2px solid #F14635;
+    border-radius: 16px;
+    display: flex;
+    height: 33px;
+    font-size: 14px;
+    color: #F14635;
+    align-items: center;
+    padding: 9px;
+    margin-right: 8px;
+}
+
+.selectfirst {
+    border: 2px solid #F14635;
+    background-color: #F14635;
+    border-radius: 16px;
+    display: flex;
+    height: 33px;
+    font-size: 14px;
+    color: #ffffff;
+    align-items: center;
+    padding: 9px;
+    margin-right: 8px;
+
+}
+
+.selectlast {
+    border: 2px solid #F14635;
+    border-radius: 16px;
+    display: flex;
+    height: 32px;
+    font-size: 14px;
+    align-items: center;
+    padding: 6px;
+}
+
+.shop-container {
+    background-color: white;
+    padding: 16px;
+    padding-bottom: 40px;
+}
+
+.shop-card img {
+    width: 361px;
+    height: 186px;
+}
+
+.shop-card {
+    margin-bottom: 25px;
+}
+
+.footer {
+    display: flex;
+    background-color: white;
+    padding-left: 16px;
+    padding-top: 7px;
+    /* Добавляем отступ снизу, чтобы полоска Home не мешала */
+    padding-bottom: calc(7px + env(safe-area-inset-bottom));
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Убираем жесткую высоту 57px */
+    z-index: 999;
+}
+
+.footer-imagefirst {
+    width: 70px;
+    height: 43px;
+}
+
+.footer-image {
+    width: 70px;
+    height: 43px;
+    margin-bottom: 4px;
+    margin-left: 27px;
+}
+
+.footer img {
+    width: 70px;
+    height: 43px;
+}
+
+/* Дальше про search.html */
+
+.search-header {
+    display: flex;
+    align-items: center;
+    width: 393px;
+    height: 54px;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    background-color: white;
+    width: 100%;
+    height: 54px;
+    box-shadow: 0 0.4px 10px rgba(0, 0, 0, 0.3);
+    /* Горизонталь, вертикаль, размытие, цвет */
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+}
+
+.search-btn {
+    width: 56px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+}
+
+.close-btn {
+    width: 24px;
+    height: 24px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.close-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.search-inputhead {
+    width: 317px;
+    height: 19px;
+    display: flex;
+}
+
+.search-text {
+    padding: 16px;
+    width: 100%;
+    height: 52px;
+    display: flex;
+    background-color: white;
+}
+
+.search-text h3 {
+    font-size: 17px;
+}
+
+.search-text p {
+    font-size: 12px;
+    display: flex;
+    margin-left: auto;
+    text-align: center;
+    align-items: center;
+    color: #0089D0;
+}
+
+.search-item {
+    background-color: white;
+
+}
+
+.search {
+    padding: 16px;
+    font-size: 17px;
+    display: flex;
+}
+
+.search a {
+    width: 317px;
+    height: 20px;
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 16px;
+}
+
+/* Дальше про searchdoc.html */
+
+.search-inputhead a {
+    width: 56px;
+    height: 54px;
+}
+
+.search-inputhead img {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+}
+
+.search-inputheader {
+    width: 273px;
+}
+
+.closesearch {
+    width: 56px;
+    height: 54px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 4px;
+}
+
+.search-select img {
+    width: 393px;
+    height: 50px;
+    background-color: white;
+}
+
+.search-doc {
+    display: flex;
+    margin-top: 8px;
+    width: 393px;
+    height: 68px;
+    align-items: center;
+    background-color: white;
+}
+
+.search-img {
+    width: 36px;
+    height: 36px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.search-doc-title-container {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    width: 271px;
+}
+
+.search-doc-title {
+    font-size: 17px;
+}
+
+.search-arrow img {
+    width: 14px;
+    height: 14px;
+}
+
+body.load-page {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* убирает прокрутку */
+}
+
+.load-page-img {
+    width: 100vw;
+    /* ширина окна браузера */
+    height: 100vh;
+    /* высота окна браузера */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.load-page-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* сохраняет пропорции, не обрезает */
+    display: block;
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.white-screen {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+.documents-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    padding-right: 16px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    background-color: white;
+    box-shadow: 0 0.2px 5px rgba(0, 0, 0, 0.3);
+    /* Горизонталь, вертикаль, размытие, цвет */
+    left: 0;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.documents {
+    display: flex;
+    flex-direction: column;
+}
+
+.documents-btn {
+    display: flex;
+    align-items: center;
+    width: 56px;
+    height: 54px;
+}
+
+.documents-title {
+    width: 273px;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.documents-title h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.documents-text {
+    padding: 12px 16px;
+    font-size: 20px;
+    font-weight: 600;
+    width: 393px;
+    height: 47px;
+}
+
+.doc-text {
+    width: 273px;
+    height: 19px;
+    margin-right: 16px;
+}
+
+.doc-arrow {
+    width: 16px;
+    height: 16px;
+}
+
+.doc-img {
+    width: 40px;
+    height: 48px;
+    margin-right: 16px;
+    align-items: center;
+    display: flex;
+}
+
+.doc-img img {
+    width: 32px;
+    height: 32px;
+}
+
+.document1,
+.document2,
+.document3,
+.document4,
+.document5 {
+    width: 393px;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    padding: 12px 16px;
+    align-items: center;
+}
+
+.document2 .doc-text {
+    height: 38px;
+}
+
+.doc-text-mini {
+    font-size: 11px;
+    color: #A8A8A8;
+    margin-top: 4px;
+    font-weight: regular;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.doc-text2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 45px;
+}
+
+.backdoc {
+    width: 393px;
+    height: 12px;
+    background-color: #F0F0F0;
+}
+
+.doc-btn {
+    width: 361px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px auto;
+    border: 1.5px solid #96BBF2;
+    border-radius: 8px;
+    padding: 17px 74px;
+}
+
+.doc-btn-text {
+    width: 100%;
+    font-size: 15px;
+    color: #147FF2;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+body {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+body.loaded {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, sans-serif;
+    background: #fff;
+    overflow-x: hidden;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+/* ХЕДЕР */
+.udos-header {
+    /* Добавляем отступ под челку */
+    padding: calc(10px + env(safe-area-inset-top)) 16px 10px 16px;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.udos-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.udos-title h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.close-udos-img {
+    width: 24px;
+    height: 24px;
+}
+
+/* ТАБЫ */
+.udos-menu-btn {
+    position: relative;
+    display: flex;
+    background-color: #f0f0f2;
+    border-radius: 10px;
+    padding: 2px;
+    height: 36px;
+}
+
+.slider-bg {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(50% - 2px);
+    height: calc(100% - 4px);
+    background: #fff;
+    border-radius: 8px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#tab-req:checked~.udos-header .slider-bg {
+    transform: translateX(100%);
+}
+
+.menu-label {
+    flex: 1;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* КОНТЕНТ СЛАЙДЕР */
+.content-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.content-slider {
+    display: flex;
+    width: 200%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page {
+    width: 50%;
+    min-height: 80vh;
+    padding-bottom: 160px;
+}
+
+#tab-req:checked~.content-wrapper .content-slider {
+    transform: translateX(-50%);
+}
+
+/* КАРТОЧКА (384x493, ЦЕНТР, БЕЗ ТЕНЕЙ) */
+.id-card-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Вычитаем из высоты экрана высоту хедера и футера */
+    min-height: calc(100vh - 150px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+    padding: 20px 16px;
+}
+
+.upload-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 48px;
+    border: 2px solid #ff3b30;
+    color: #ff3b30;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.image-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-wrapper {
+    position: relative;
+    width: 384px;
+    height: 493px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: none;
+}
+
+/* КНОПКА УДАЛЕНИЯ */
+.delete-btn-overlay {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-text {
+    margin-top: 15px;
+    color: #ff3b30;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ФИКСИРОВАННЫЕ КНОПКИ (СИНХРОННЫЙ СВАЙП) */
+.fixed-action-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 110;
+    /* Создаем безопасный отступ снизу */
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.btns-slider {
+    display: flex;
+    width: 200%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btns-group {
+    width: 50%;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+#tab-req:checked~.fixed-action-container .btns-slider {
+    transform: translateX(-50%);
+}
+
+.blue-btn,
+.white-btn {
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.blue-btn {
+    background: #007aff;
+    color: #fff;
+}
+
+.white-btn {
+    background: #fff;
+    color: #007aff;
+    border: 1px solid #007aff;
+    
+}
+
+.blue-btn img{
+    width: 29px;
+    height: 27px;
+}
+
+.white-btn img {
+   width: 20px;
+   height: 21px;
+}
+
+/* ЗУМ */
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+}
+
+.zoom-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-content {
+    width: 384px;
+    height: 493px;
+    object-fit: contain;
+    box-shadow: none;
+    transition: transform 0.1s ease-out;
+}
+
+.close-zoom {
+    position: absolute;
+    /* Используем отступ челки + еще чуть-чуть */
+    top: calc(20px + env(safe-area-inset-top));
+    right: 25px;
+    color: #fff;
+    font-size: 35px;
+    z-index: 2100;
+    cursor: pointer;
+}
+
+/* РЕКВИЗИТЫ */
+.req-list {
+    padding: 10px 16px;
+}
+
+.req-item {
+    display: flex;
+    flex-direction: column; /* Заголовок сверху, строка снизу */
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f2;
+}
+
+.req-item span {
+    font-size: 12px;
+    color: #8e8e93;
+    margin-bottom: 4px;
+}
+
+/* Новая обертка для инпута и иконки */
+.input-row {
+    display: flex;
+    align-items: center; /* Центрируем иконку относительно текста по вертикали */
+    justify-content: space-between;
+}
+
+.req-input {
+    flex: 1; /* Забирает всё свободное пространство, толкая иконку вправо */
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    background: transparent;
+}
+
+.copy-img {
+    width: 24px;  /* Уменьшил до стандартного размера иконок */
+    height: 24px;
+    cursor: pointer;
+    margin-left: 8px; /* Отступ от текста */
+    opacity: 0.6;     /* Немного приглушим цвет как на оригинале */
+}
+
+.spacer {
+    height: 48px; /* Высота синей кнопки */
+    width: 100%;
+    visibility: hidden; /* Он невидим и не кликабелен */
+}
+
+.toast {
+    position: fixed;
+    display: flex;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #525252;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 99999; /* Максимальный приоритет */
+    pointer-events: none; /* Чтобы не мешал кликам, когда прозрачен */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    width: 361px;
+    height: 48px;
+    font-size: 16px;
+    align-items: center;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+.galochka {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+/* Оверлей фона */
+.bottom-sheet-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: flex-end; /* Окно прижато к низу */
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.bottom-sheet-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Само модальное окно */
+.bottom-sheet {
+    width: 100%;
+    /* Добавляем padding-bottom с учетом безопасной зоны */
+    padding: 12px 20px calc(20px + env(safe-area-inset-bottom)) 20px;
+    background: #fff;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+.bottom-sheet-overlay.active .bottom-sheet {
+    transform: translateY(0); /* Выезжает вверх */
+}
+
+/* Полоска сверху */
+.sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin: 0 auto 20px auto;
+}
+
+/* Контент */
+.sheet-content { text-align: center; }
+
+.sheet-title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+}
+
+.sheet-instruction {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.qr-placeholder img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.sheet-sub-instruction {
+    font-size: 15px;
+    color: #8e8e93;
+    margin-bottom: 4px;
+}
+
+.sheet-code {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin: 0;
+    color: #000;
+}
+
+/* Шапка внутри модалки */
+.sheet-header {
+    display: flex;
+    justify-content: space-between; /* Заголовок влево, крестик вправо */
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sheet-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0; /* Убрали внешние отступы */
+    color: #000;
+}
+
+/* Кнопка-крестик */
+.close-sheet-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #8e8e93;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+/* Центрирование остального контента */
+.sheet-instruction {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.qr-placeholder {
+    display: flex;
+    justify-content: center;
+}
+
+.sheet-sub-instruction {
+    text-align: center;
+    font-size: 15px;
+    color: #8e8e93;
+    margin-bottom: 4px;
+}
+
+.sheet-code {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+}

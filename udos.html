@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Удостоверение личности</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
+    <meta name="application-name" content="Kaspi.kz">
+
+    <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
+    <link rel="manifest" href="./manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+
+<body>
+    <input type="radio" name="tabs" id="tab-doc" checked>
+    <input type="radio" name="tabs" id="tab-req">
+
+    <div class="udos-header">
+        <div class="udos-top-row">
+            <button onclick="window.location.href='documents.html'" class="close-udos-btn">
+                <img src="./image/back2.png" alt="back" class="close-udos-img">
+            </button>
+            <div class="udos-title">
+                <h3>Удостоверение личности</h3>
+            </div>
+            <div style="width: 24px;"></div>
+        </div>
+
+        <div class="udos-menu">
+            <div class="udos-menu-btn">
+                <div class="slider-bg"></div>
+                <label for="tab-doc" class="menu-label label-doc">Документ</label>
+                <label for="tab-req" class="menu-label label-req">Реквизиты</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content-slider">
+            <div class="page page-doc">
+                <div class="id-card-area">
+                    <label for="file-upload" class="upload-placeholder" id="uploadPlaceholder">
+                        <span>Загрузить</span>
+                        <input type="file" id="file-upload" accept="image/*" style="display:none;">
+                    </label>
+
+                    <div id="imageContainer" class="image-preview-container" style="display:none;">
+                        <div class="image-wrapper">
+                            <img id="idImagePreview" src="" alt="Удостоверение">
+                            <!-- <button class="delete-btn-overlay" onclick="deleteImage(event)">&times;</button> -->
+                        </div>
+                        <!-- <p class="delete-text" onclick="deleteImage(event)">Удалить и загрузить заново</p> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="page page-req">
+                <div class="req-list">
+                    <div class="req-item">
+                        <span>ФИО</span>
+                        <div class="input-row">
+                            <input type="text" id="req-fio" class="req-input" placeholder="Введите ФИО"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                    <div class="req-item">
+                        <span>ИИН</span>
+                        <div class="input-row">
+                            <input type="text" id="req-iin" class="req-input" placeholder="Введите ИИН"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                    <div class="req-item">
+                        <span>Дата рождения</span>
+                        <div class="input-row">
+                            <input type="text" id="req-birth" class="req-input" placeholder="Введите дату рождения"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                    <div class="req-item">
+                        <span>Номер документа</span>
+                        <div class="input-row">
+                            <input type="text" id="req-num" class="req-input" placeholder="000000000"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                    <div class="req-item">
+                        <span>Дата выдачи</span>
+                        <div class="input-row">
+                            <input type="text" id="req-date" class="req-input" placeholder="00.00.0000"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                    <div class="req-item">
+                        <span>Срок действия</span>
+                        <div class="input-row">
+                            <input type="text" id="req-expiry" class="req-input" placeholder="00.00.0000"
+                                oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-action-container">
+        <div class="btns-slider">
+            <div class="btns-group">
+                <button class="blue-btn" onclick="openQrModal()">
+                    <img src="./image/qr.png"> Предъявить документ
+                </button>
+                <button class="white-btn" onclick="shareAsPDF()">
+                    <img src="./image/share.png"> Отправить документ
+                </button>
+            </div>
+            <div class="btns-group">
+                <div class="spacer"></div>
+                <button class="white-btn" onclick="shareReqs()">
+                    <img src="./image/share.png"> Отправить реквизиты
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="zoomModal" class="zoom-overlay" onclick="closeZoom()">
+        <span class="close-zoom" onclick="closeZoom()">&times;</span>
+        <div class="zoom-container">
+            <img class="zoom-content" id="zoomedImg">
+        </div>
+    </div>
+    <div id="copy-toast" class="toast"><img src="./image/galochka.png" class="galochka">Скопировано</div>
+
+    <script>
+        const fileInput = document.getElementById('file-upload');
+        const preview = document.getElementById('idImagePreview');
+        const placeholder = document.getElementById('uploadPlaceholder');
+        const container = document.getElementById('imageContainer');
+        const zoomModal = document.getElementById('zoomModal');
+        const zoomedImg = document.getElementById('zoomedImg');
+        const toast = document.getElementById('copy-toast');
+
+        let scale = 1;
+        let startDist = 0;
+
+        // ЗАГРУЗКА ДАННЫХ ПРИ СТАРТЕ
+        window.onload = () => {
+            const savedImage = localStorage.getItem('idCardPhoto');
+            if (savedImage) showImage(savedImage);
+
+            const inputIds = ['req-fio', 'req-iin', 'req-birth', 'req-num', 'req-date', 'req-expiry'];
+            inputIds.forEach(id => {
+                const savedValue = localStorage.getItem(id);
+                if (savedValue) {
+                    const el = document.getElementById(id);
+                    if (el) el.value = savedValue;
+                }
+            });
+        };
+
+        // ФОТО
+        fileInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    localStorage.setItem('idCardPhoto', e.target.result);
+                    showImage(e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function showImage(src) {
+            preview.src = src;
+            container.style.display = 'flex';
+            placeholder.style.display = 'none';
+        }
+
+        function deleteImage(e) {
+            e.stopPropagation();
+            localStorage.removeItem('idCardPhoto');
+            container.style.display = 'none';
+            placeholder.style.display = 'flex';
+            fileInput.value = "";
+        }
+
+        // РЕКВИЗИТЫ
+        function saveReq(input) {
+            localStorage.setItem(input.id, input.value);
+        }
+
+        function showToast() {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function copyText(el) {
+            const input = el.parentElement.querySelector('input');
+            if (input && input.value) {
+                navigator.clipboard.writeText(input.value).then(showToast)
+                    .catch(() => {
+                        input.select();
+                        document.execCommand('copy');
+                        showToast();
+                    });
+                el.style.transform = "scale(0.8)";
+                setTimeout(() => el.style.transform = "scale(1)", 100);
+            }
+        }
+
+        // ЗУМ
+        preview.onclick = (e) => {
+            e.stopPropagation();
+            zoomModal.style.display = "flex";
+            zoomedImg.src = preview.src;
+            scale = 1;
+            zoomedImg.style.transform = `scale(1)`;
+        };
+
+        function closeZoom() { zoomModal.style.display = "none"; }
+
+        zoomModal.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 2) {
+                startDist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+            }
+        });
+
+        zoomModal.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 2) {
+                e.preventDefault();
+                const dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
+                let newScale = scale * (dist / startDist);
+                if (newScale >= 1 && newScale <= 4) zoomedImg.style.transform = `scale(${newScale})`;
+            }
+        }, { passive: false });
+
+        zoomModal.addEventListener('touchend', (e) => {
+            if (e.touches.length < 2) {
+                const matrix = new WebKitCSSMatrix(window.getComputedStyle(zoomedImg).transform);
+                scale = matrix.a;
+            }
+        });
+        function openQrModal() {
+            document.getElementById('qrModal').classList.add('active');
+            // Блокируем скролл основной страницы при открытом окне
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQrModal(e) {
+            document.getElementById('qrModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+        }
+        async function shareAsPDF() {
+            const { jsPDF } = window.jspdf;
+            const imgElement = document.getElementById('idImagePreview');
+            const iinValue = document.getElementById('req-iin').value.trim() || "000000000000";
+
+            if (!imgElement.src || imgElement.src.includes('window.location')) {
+                alert("Сначала загрузите изображение");
+                return;
+            }
+
+            // Генерируем временную метку: YYYYMMDDHHMMSS + миллисекунды (как в твоем примере)
+            const now = new Date();
+            const timestamp = now.getFullYear().toString() +
+                (now.getMonth() + 1).toString().padStart(2, '0') +
+                now.getDate().toString().padStart(2, '0') +
+                now.getHours().toString().padStart(2, '0') +
+                now.getMinutes().toString().padStart(2, '0') +
+                now.getSeconds().toString().padStart(2, '0') +
+                now.getMilliseconds().toString().padStart(3, '0');
+
+            // Формируем имя файла по твоему шаблону
+            const fileName = `${iinValue}-${timestamp}.pdf`;
+
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const imgWidth = 100;
+            const imgHeight = (imgElement.naturalHeight * imgWidth) / imgElement.naturalWidth;
+
+            // Центрируем фото на листе
+            pdf.addImage(imgElement.src, 'JPEG', 55, 40, imgWidth, imgHeight);
+
+            const pdfOutput = pdf.output('blob');
+            const file = new File([pdfOutput], fileName, { type: "application/pdf" });
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: 'Документ PDF',
+                        text: `Отправка документа: ${fileName}`
+                    });
+                } catch (err) {
+                    console.log("Отмена отправки");
+                }
+            } else {
+                pdf.save(fileName);
+            }
+        }
+        async function shareReqs() {
+            // Список ID полей и их понятных названий для сообщения
+            const labels = {
+                'req-fio': 'ФИО',
+                'req-iin': 'ИИН',
+                'req-birth': 'Дата рождения',
+                'req-num': 'Номер документа',
+                'req-date': 'Дата выдачи',
+                'req-expiry': 'Срок действия'
+            };
+
+            let shareText = "Реквизиты удостоверения личности:\n\n";
+            let hasData = false;
+
+            // Собираем данные из полей
+            for (const [id, label] of Object.entries(labels)) {
+                const val = document.getElementById(id).value.trim();
+                if (val) {
+                    shareText += `${label}: ${val}\n`;
+                    hasData = true;
+                }
+            }
+
+            if (!hasData) {
+                alert("Поля реквизитов пусты");
+                return;
+            }
+
+            // Используем Web Share API
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Реквизиты документа',
+                        text: shareText
+                    });
+                } catch (err) {
+                    console.log("Отмена отправки");
+                }
+            } else {
+                // Если Share API не поддерживается, просто копируем в буфер
+                navigator.clipboard.writeText(shareText);
+                alert("Реквизиты скопированы в буфер обмена (Share API не поддерживается)");
+            }
+        }
+    </script>
+
+    <div id="qrModal" class="bottom-sheet-overlay" onclick="closeQrModal(event)">
+        <div class="bottom-sheet" onclick="event.stopPropagation()">
+            <div class="sheet-handle"></div>
+
+            <div class="sheet-content">
+                <div class="sheet-header">
+                    <h2 class="sheet-title">Удостоверение личности</h2>
+                    <button class="close-sheet-btn" onclick="closeQrModal()">&times;</button>
+                </div>
+
+                <p class="sheet-instruction">Покажите QR-код сотруднику</p>
+
+                <div class="qr-placeholder">
+                    <img src="./image/qr2.png" alt="QR Code">
+                </div>
+
+                <p class="sheet-sub-instruction">или скажите код</p>
+                <h3 class="sheet-code">292243</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
