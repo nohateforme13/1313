@@ -54,7 +54,7 @@
                     <div id="imageContainer" class="image-preview-container" style="display:none;">
                         <div class="image-wrapper">
                             <img id="idImagePreview" src="" alt="Удостоверение">
-                            <!-- <button class="delete-btn-overlay" onclick="deleteImage(event)">&times;</button> -->
+                            <button class="delete-btn-overlay" onclick="deleteImage(event)">&times;</button>
                         </div>
                         <!-- <p class="delete-text" onclick="deleteImage(event)">Удалить и загрузить заново</p> -->
                     </div>
@@ -135,12 +135,12 @@
         </div>
     </div>
 
-    <div id="zoomModal" class="zoom-overlay" onclick="closeZoom()">
+    <!-- <div id="zoomModal" class="zoom-overlay" onclick="closeZoom()">
         <span class="close-zoom" onclick="closeZoom()">&times;</span>
         <div class="zoom-container">
             <img class="zoom-content" id="zoomedImg">
         </div>
-    </div>
+    </div> -->
     <div id="copy-toast" class="toast"><img src="./image/galochka.png" class="galochka">Скопировано</div>
 
     <script>
@@ -253,11 +253,31 @@
                 scale = matrix.a;
             }
         });
-        function openQrModal() {
-            document.getElementById('qrModal').classList.add('active');
-            // Блокируем скролл основной страницы при открытом окне
-            document.body.style.overflow = 'hidden';
-        }
+       function openQrModal() {
+    const loader = document.getElementById('loadingOverlay');
+    const bottomSheet = document.getElementById('qrModal'); // Используем ID qrModal, так как он у тебя в HTML
+
+    if (!loader || !bottomSheet) return;
+
+    // 1. Показываем загрузку и блокируем скролл
+    loader.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // 2. Ждем 1.5 секунды
+    setTimeout(() => {
+        // 3. Скрываем загрузку
+        loader.style.display = 'none';
+        
+        // 4. Плавно открываем QR-модалку
+        bottomSheet.classList.add('active');
+    }, 1500);
+}
+
+// Функцию закрытия оставляем без изменений
+function closeQrModal() {
+    document.getElementById('qrModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
         function closeQrModal(e) {
             document.getElementById('qrModal').classList.remove('active');
@@ -355,6 +375,25 @@
                 alert("Реквизиты скопированы в буфер обмена (Share API не поддерживается)");
             }
         }
+        document.querySelector('.image-wrapper').addEventListener('click', function () {
+            this.classList.toggle('zoomed');
+        });
+        function showDocumentWithLoading() {
+    const loader = document.getElementById('loadingOverlay');
+    const bottomSheet = document.getElementById('bottomSheetOverlay');
+
+    // 1. Показываем загрузку
+    loader.style.display = 'flex';
+
+    // 2. Ждем 1.5 секунды (имитация загрузки из базы данных)
+    setTimeout(() => {
+        // 3. Скрываем загрузку
+        loader.style.display = 'none';
+        
+        // 4. Открываем модальное окно с QR
+        bottomSheet.classList.add('active');
+    }, 1500);
+}
     </script>
 
     <div id="qrModal" class="bottom-sheet-overlay" onclick="closeQrModal(event)">
@@ -378,6 +417,9 @@
             </div>
         </div>
     </div>
+    <div id="loadingOverlay" class="loading-overlay">
+    <div class="loader"></div>
+</div>
 </body>
 
 </html>

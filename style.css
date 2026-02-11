@@ -11,7 +11,19 @@ body {
     overflow-x: hidden;
 }
 
+body.load-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none; /* Полностью блокирует тач-скролл */
+}
 
+a, button, label, .menu-btn, .search-content {
+    -webkit-tap-highlight-color: transparent; /* Убирает системную вспышку при клике */
+    -webkit-touch-callout: none;              /* Отключает контекстное меню при долгом нажатии */
+    user-select: none;                         /* Запрещает случайное выделение текста при кликах */
+}
 
 html,
 body {
@@ -20,6 +32,23 @@ body {
     background: none;
     margin: 0;
     padding: 0;
+}
+
+/* Этот класс полностью выключает скролл только там, где он добавлен */
+body.no-scroll {
+    overflow: hidden;
+    touch-action: none; 
+    height: 100vh;
+}
+
+html, body {
+    /* Отключает системный зум по двойному клику и жестами (pinch-to-zoom) */
+    touch-action: manipulation; 
+}
+
+button, a, .menu-btn, .service-btn, .footer-btn {
+    /* Принудительно отключаем для интерактивных элементов */
+    touch-action: manipulation;
 }
 
 * {
@@ -63,6 +92,8 @@ a {
     border-radius: 8px;
 }
 
+
+
 .search-icon {
     width: 16px;
     height: 16px;
@@ -81,6 +112,7 @@ a {
 .search-input {
     all: unset;
     caret-color: #B12C1F;
+    color: #7a7a7a;
 }
 
 .ad-container {
@@ -340,17 +372,16 @@ a {
 .search-header {
     display: flex;
     align-items: center;
-    width: 393px;
-    height: 54px;
     padding-right: 16px;
-    padding-top: 6px;
+    padding-top: 8px;
     padding-bottom: 8px;
+    margin-left: 3px;
+    margin-top: 1px;
     background-color: white;
     width: 100%;
-    height: 54px;
+    height: 56px;
     box-shadow: 0 0.4px 10px rgba(0, 0, 0, 0.3);
     /* Горизонталь, вертикаль, размытие, цвет */
-    position: fixed;
     top: 0;
     left: 0;
     font-size: 16px;
@@ -769,7 +800,8 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    margin-top: 30px;
     /* Вычитаем из высоты экрана высоту хедера и футера */
     min-height: calc(100vh - 150px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     padding: 20px 16px;
@@ -781,8 +813,8 @@ input[type="radio"] {
     justify-content: center;
     width: 200px;
     height: 48px;
-    border: 2px solid #ff3b30;
-    color: #ff3b30;
+    border: 2px solid #dbdbdb;
+    color: #dbdbdb;
     border-radius: 12px;
     font-weight: 600;
 }
@@ -797,16 +829,28 @@ input[type="radio"] {
     position: relative;
     width: 384px;
     height: 493px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #f9f9f9;
+    overflow: visible; /* Разрешаем картинке выходить за границы при зуме */
+    transition: z-index 0.3s;
 }
 
 .image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    box-shadow: none;
+    transition: transform 0.3s ease;
+    cursor: zoom-in;
+    z-index: 1;
+}
+
+/* Класс, который будет добавляться через JS */
+.image-wrapper.zoomed img {
+    transform: scale(1.5); /* Масштаб увеличения */
+    z-index: 1000;
+    cursor: zoom-out;
+}
+
+.image-wrapper.zoomed {
+    z-index: 1001;
 }
 
 /* КНОПКА УДАЛЕНИЯ */
@@ -953,7 +997,6 @@ input[type="radio"] {
     display: flex;
     flex-direction: column; /* Заголовок сверху, строка снизу */
     padding: 12px 0;
-    border-bottom: 1px solid #f0f0f2;
 }
 
 .req-item span {
@@ -1156,3 +1199,52 @@ input[type="radio"] {
     font-weight: 700;
     margin: 0;
 }
+
+/* Вкладка Реквизиты — отключаем скролл */
+#tab-req:checked ~ .content-wrapper .page:last-child {
+    overflow: hidden;
+    height: auto;
+    max-height: calc(100vh - 150px); /* Высота без хедера и кнопок */
+}
+
+/* Общая прокрутка страницы UDOS */
+.page {
+    width: 50%;
+    padding-bottom: 20px; /* Уменьшили огромный отступ 160px */
+    min-height: auto; 
+}
+
+/* Если нужно убрать скролл всей страницы, когда открыты реквизиты */
+body:has(#tab-req:checked) {
+    overflow: hidden;
+}
+
+/* Оверлей загрузки */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Белый полупрозрачный фон */
+    backdrop-filter: blur(2px); /* Легкое размытие как в iOS */
+    display: none; /* По умолчанию скрыт */
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+}
+
+/* Крутящийся круг */
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #F14635; /* Красный цвет Kaspi */
+    border-bottom-color: transparent; /* Обрезаем круг */
+    border-radius: 50%;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
