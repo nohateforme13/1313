@@ -1253,3 +1253,38 @@ body:has(#tab-req:checked) {
     100% { transform: rotate(360deg); }
 }
 
+.zoom-overlay {
+    display: none;
+    position: fixed;
+    z-index: 10001; /* Выше всего */
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.zoom-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto; /* Разрешаем скролл, если картинка большая */
+}
+
+.zoom-content {
+    max-width: 95%;
+    max-height: 95%;
+    transition: transform 0.2s;
+    touch-action: none; /* Мы сами будем управлять зумом через JS */
+}
+
+.close-zoom {
+    position: absolute;
+    top: 40px; right: 25px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    z-index: 10002;
+}

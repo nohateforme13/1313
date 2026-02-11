@@ -3,27 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>Удостоверение личности</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <meta name="apple-mobile-web-app-title" content="Kaspi.kz">
-    <meta name="application-name" content="Kaspi.kz">
-
-    <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
-    <link rel="manifest" href="./manifest.json">
-
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <link rel="apple-touch-icon" href="./image/kaspi_icon.png">
-
-<link rel="manifest" href="./manifest.json">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="./manifest.json">
 </head>
 
 <body>
@@ -32,7 +20,7 @@
 
     <div class="udos-header">
         <div class="udos-top-row">
-            <button onclick="window.location.href='documents.html'" class="close-udos-btn">
+            <!-- <button onclick="window.location.href='documents.html'" class="close-udos-btn"> -->
                 <img src="./image/back2.png" alt="back" class="close-udos-img">
             </button>
             <div class="udos-title">
@@ -64,7 +52,6 @@
                             <img id="idImagePreview" src="" alt="Удостоверение">
                             <button class="delete-btn-overlay" onclick="deleteImage(event)">&times;</button>
                         </div>
-                        <!-- <p class="delete-text" onclick="deleteImage(event)">Удалить и загрузить заново</p> -->
                     </div>
                 </div>
             </div>
@@ -74,48 +61,43 @@
                     <div class="req-item">
                         <span>ФИО</span>
                         <div class="input-row">
-                            <input type="text" id="req-iin" class="req-input" value="" oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-fio" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>ИИН</span>
                         <div class="input-row">
-                            <input type="text" id="req-iin" class="req-input" value=""
-                                oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-iin" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>Дата рождения</span>
                         <div class="input-row">
-                            <input type="text" id="req-birth" class="req-input" value=""
-                                oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-birth" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>Номер документа</span>
                         <div class="input-row">
-                            <input type="text" id="req-num" class="req-input" value=""
-                                oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-num" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>Дата выдачи</span>
                         <div class="input-row">
-                            <input type="text" id="req-date" class="req-input" value=""
-                                oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-date" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                     <div class="req-item">
                         <span>Срок действия</span>
                         <div class="input-row">
-                            <input type="text" id="req-expiry" class="req-input" value=""
-                                oninput="saveReq(this)">
-                            <img class="copy-img" src="./image/copy.png" alt="copy" onclick="copyText(this)">
+                            <input type="text" id="req-expiry" class="req-input" oninput="saveReq(this)">
+                            <img class="copy-img" src="./image/copy.png" onclick="copyText(this)">
                         </div>
                     </div>
                 </div>
@@ -142,28 +124,54 @@
         </div>
     </div>
 
-    <!-- <div id="zoomModal" class="zoom-overlay" onclick="closeZoom()">
-        <span class="close-zoom" onclick="closeZoom()">&times;</span>
+    <div id="zoomModal" class="zoom-overlay" onclick="closeZoom()">
+        <span class="close-zoom">&times;</span>
         <div class="zoom-container">
-            <img class="zoom-content" id="zoomedImg">
+            <img class="zoom-content" id="zoomedImg" onclick="event.stopPropagation()">
         </div>
-    </div> -->
-    <div id="copy-toast" class="toast"><img src="./image/galochka.png" class="galochka">Скопировано</div>
+    </div>
+
+    <div id="copy-toast" class="toast">
+        <img src="./image/galochka.png" class="galochka">Скопировано
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <div id="qrModal" class="bottom-sheet-overlay" onclick="closeQrModal(event)">
+        <div class="bottom-sheet" onclick="event.stopPropagation()">
+            <div class="sheet-handle"></div>
+            <div class="sheet-content">
+                <div class="sheet-header">
+                    <h2 class="sheet-title">Удостоверение личности</h2>
+                    <button class="close-sheet-btn" onclick="closeQrModal()">&times;</button>
+                </div>
+                <p class="sheet-instruction">Покажите QR-код сотруднику</p>
+                <div class="qr-placeholder">
+                    <img src="./image/qr2.png" alt="QR Code">
+                </div>
+                <p class="sheet-sub-instruction">или скажите код</p>
+                <h3 class="sheet-code">292243</h3>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // Инициализация элементов
         const fileInput = document.getElementById('file-upload');
         const preview = document.getElementById('idImagePreview');
         const placeholder = document.getElementById('uploadPlaceholder');
         const container = document.getElementById('imageContainer');
+        const toast = document.getElementById('copy-toast');
         const zoomModal = document.getElementById('zoomModal');
         const zoomedImg = document.getElementById('zoomedImg');
-        const toast = document.getElementById('copy-toast');
 
         let scale = 1;
         let startDist = 0;
 
-        // ЗАГРУЗКА ДАННЫХ ПРИ СТАРТЕ
-        window.onload = () => {
+        // ЗАГРУЗКА ПРИ СТАРТЕ
+        window.addEventListener('DOMContentLoaded', () => {
             const savedImage = localStorage.getItem('idCardPhoto');
             if (savedImage) showImage(savedImage);
 
@@ -175,9 +183,9 @@
                     if (el) el.value = savedValue;
                 }
             });
-        };
+        });
 
-        // ФОТО
+        // РАБОТА С ФОТО
         fileInput.addEventListener('change', function () {
             const file = this.files[0];
             if (file) {
@@ -217,27 +225,31 @@
         function copyText(el) {
             const input = el.parentElement.querySelector('input');
             if (input && input.value) {
-                navigator.clipboard.writeText(input.value).then(showToast)
-                    .catch(() => {
-                        input.select();
-                        document.execCommand('copy');
-                        showToast();
-                    });
+                navigator.clipboard.writeText(input.value).then(showToast).catch(() => {
+                    input.select();
+                    document.execCommand('copy');
+                    showToast();
+                });
                 el.style.transform = "scale(0.8)";
                 setTimeout(() => el.style.transform = "scale(1)", 100);
             }
         }
 
-        // ЗУМ
+        // ЛОГИКА ЗУМА (PINCH-TO-ZOOM)
         preview.onclick = (e) => {
             e.stopPropagation();
+            if(!preview.src || preview.src.includes('window.location')) return;
             zoomModal.style.display = "flex";
             zoomedImg.src = preview.src;
             scale = 1;
             zoomedImg.style.transform = `scale(1)`;
+            document.body.style.overflow = 'hidden';
         };
 
-        function closeZoom() { zoomModal.style.display = "none"; }
+        function closeZoom() {
+            zoomModal.style.display = "none";
+            document.body.style.overflow = '';
+        }
 
         zoomModal.addEventListener('touchstart', (e) => {
             if (e.touches.length === 2) {
@@ -250,192 +262,60 @@
                 e.preventDefault();
                 const dist = Math.hypot(e.touches[0].pageX - e.touches[1].pageX, e.touches[0].pageY - e.touches[1].pageY);
                 let newScale = scale * (dist / startDist);
-                if (newScale >= 1 && newScale <= 4) zoomedImg.style.transform = `scale(${newScale})`;
+                if (newScale >= 1 && newScale <= 4) {
+                    zoomedImg.style.transform = `scale(${newScale})`;
+                }
             }
         }, { passive: false });
 
         zoomModal.addEventListener('touchend', (e) => {
             if (e.touches.length < 2) {
-                const matrix = new WebKitCSSMatrix(window.getComputedStyle(zoomedImg).transform);
-                scale = matrix.a;
+                try {
+                    const matrix = new WebKitCSSMatrix(window.getComputedStyle(zoomedImg).transform);
+                    scale = matrix.a;
+                } catch(e) { scale = 1; }
             }
         });
+
+        // QR И ЗАГРУЗКА
         function openQrModal() {
             const loader = document.getElementById('loadingOverlay');
-            const bottomSheet = document.getElementById('qrModal'); // Используем ID qrModal, так как он у тебя в HTML
-
-            if (!loader || !bottomSheet) return;
-
-            // 1. Показываем загрузку и блокируем скролл
+            const bottomSheet = document.getElementById('qrModal');
             loader.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-
-            // 2. Ждем 1.5 секунды
             setTimeout(() => {
-                // 3. Скрываем загрузку
                 loader.style.display = 'none';
-
-                // 4. Плавно открываем QR-модалку
                 bottomSheet.classList.add('active');
             }, 1500);
         }
 
-        // Функцию закрытия оставляем без изменений
         function closeQrModal() {
             document.getElementById('qrModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         }
 
-        function closeQrModal(e) {
-            document.getElementById('qrModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-
-        }
+        // PDF И ШЕРИНГ
         async function shareAsPDF() {
             const { jsPDF } = window.jspdf;
-            const imgElement = document.getElementById('idImagePreview');
             const iinValue = document.getElementById('req-iin').value.trim() || "000000000000";
-
-            if (!imgElement.src || imgElement.src.includes('window.location')) {
-                alert("Сначала загрузите изображение");
-                return;
+            if (!preview.src || preview.src.includes('window.location')) {
+                alert("Загрузите изображение"); return;
             }
-
-            // Генерируем временную метку: YYYYMMDDHHMMSS + миллисекунды (как в твоем примере)
-            const now = new Date();
-            const timestamp = now.getFullYear().toString() +
-                (now.getMonth() + 1).toString().padStart(2, '0') +
-                now.getDate().toString().padStart(2, '0') +
-                now.getHours().toString().padStart(2, '0') +
-                now.getMinutes().toString().padStart(2, '0') +
-                now.getSeconds().toString().padStart(2, '0') +
-                now.getMilliseconds().toString().padStart(3, '0');
-
-            // Формируем имя файла по твоему шаблону
-            const fileName = `${iinValue}-${timestamp}.pdf`;
-
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const imgWidth = 100;
-            const imgHeight = (imgElement.naturalHeight * imgWidth) / imgElement.naturalWidth;
-
-            // Центрируем фото на листе
-            pdf.addImage(imgElement.src, 'JPEG', 55, 40, imgWidth, imgHeight);
-
-            const pdfOutput = pdf.output('blob');
-            const file = new File([pdfOutput], fileName, { type: "application/pdf" });
-
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        files: [file],
-                        title: 'Документ PDF',
-                        text: `Отправка документа: ${fileName}`
-                    });
-                } catch (err) {
-                    console.log("Отмена отправки");
-                }
-            } else {
-                pdf.save(fileName);
-            }
+            const pdf = new jsPDF();
+            pdf.addImage(preview.src, 'JPEG', 15, 40, 180, 110);
+            pdf.save(`ID-${iinValue}.pdf`);
         }
+
         async function shareReqs() {
-            // Список ID полей и их понятных названий для сообщения
-            const labels = {
-                'req-fio': 'ФИО',
-                'req-iin': 'ИИН',
-                'req-birth': 'Дата рождения',
-                'req-num': 'Номер документа',
-                'req-date': 'Дата выдачи',
-                'req-expiry': 'Срок действия'
-            };
-
-            let shareText = "Реквизиты удостоверения личности:\n\n";
-            let hasData = false;
-
-            // Собираем данные из полей
-            for (const [id, label] of Object.entries(labels)) {
-                const val = document.getElementById(id).value.trim();
-                if (val) {
-                    shareText += `${label}: ${val}\n`;
-                    hasData = true;
-                }
-            }
-
-            if (!hasData) {
-                alert("Поля реквизитов пусты");
-                return;
-            }
-
-            // Используем Web Share API
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: 'Реквизиты документа',
-                        text: shareText
-                    });
-                } catch (err) {
-                    console.log("Отмена отправки");
-                }
-            } else {
-                // Если Share API не поддерживается, просто копируем в буфер
-                navigator.clipboard.writeText(shareText);
-                alert("Реквизиты скопированы в буфер обмена (Share API не поддерживается)");
-            }
-        }
-        document.querySelector('.image-wrapper').addEventListener('click', function () {
-            this.classList.toggle('zoomed');
-        });
-        function showDocumentWithLoading() {
-            const loader = document.getElementById('loadingOverlay');
-            const bottomSheet = document.getElementById('bottomSheetOverlay');
-
-            // 1. Показываем загрузку
-            loader.style.display = 'flex';
-
-            // 2. Ждем 1.5 секунды (имитация загрузки из базы данных)
-            setTimeout(() => {
-                // 3. Скрываем загрузку
-                loader.style.display = 'none';
-
-                // 4. Открываем модальное окно с QR
-                bottomSheet.classList.add('active');
-            }, 1500);
+            const ids = ['req-fio', 'req-iin', 'req-birth', 'req-num', 'req-date', 'req-expiry'];
+            let text = "Реквизиты:\n";
+            ids.forEach(id => {
+                const val = document.getElementById(id).value;
+                if(val) text += `${id.replace('req-', '').toUpperCase()}: ${val}\n`;
+            });
+            if (navigator.share) navigator.share({ text: text });
+            else alert("Скопировано");
         }
     </script>
-    <script>document.addEventListener('touchstart', function (event) {
-            if (event.touches.length > 1) {
-                event.preventDefault(); // Запрещает мультитач (зум)
-            }
-        }, { passive: false });
-
-        document.addEventListener('gesturestart', function (event) {
-            event.preventDefault(); // Специальный костыль для Safari
-        });</script>
-
-    <div id="qrModal" class="bottom-sheet-overlay" onclick="closeQrModal(event)">
-        <div class="bottom-sheet" onclick="event.stopPropagation()">
-            <div class="sheet-handle"></div>
-
-            <div class="sheet-content">
-                <div class="sheet-header">
-                    <h2 class="sheet-title">Удостоверение личности</h2>
-                    <button class="close-sheet-btn" onclick="closeQrModal()">&times;</button>
-                </div>
-
-                <p class="sheet-instruction">Покажите QR-код сотруднику</p>
-
-                <div class="qr-placeholder">
-                    <img src="./image/qr2.png" alt="QR Code">
-                </div>
-
-                <p class="sheet-sub-instruction">или скажите код</p>
-                <h3 class="sheet-code">292243</h3>
-            </div>
-        </div>
-    </div>
-    <div id="loadingOverlay" class="loading-overlay">
-        <div class="loader"></div>
-    </div>
 </body>
-
 </html>
